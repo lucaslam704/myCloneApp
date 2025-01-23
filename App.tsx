@@ -26,7 +26,7 @@ export default function App() {
           <View style={styles.storyItem}>
           <TouchableOpacity onPress={() => alert("Opening your story")}>
             <View style={styles.storyPlus}>
-              <Image source={require('./assets/pic/icon_profile.webp')} style={styles.storyImage} />
+              <Image source={require('./assets/pic/me.jpg')} style={styles.storyImage} />
               <View style={styles.addStoryButton}>
                 <Text style={styles.plusIcon}>+</Text>
               </View>
@@ -36,14 +36,21 @@ export default function App() {
           </View>
           
           {/* Other Stories */}
-          {["jaded.ellen", "pia.in.a.pod", "lil.wyatt838", "freddy323", "a_virus"].map((item) => (
-            <TouchableOpacity key={item} style={styles.storyItem} onPress={() => alert("Opening story")}>
+          {[
+            { username: "jaded.ellen", image: require('./assets/pic/user.jpg') },
+            { username: "pia.in.a.pod", image: require('./assets/pic/user5.jpg') },
+            { username: "lil.wyatt838", image: require('./assets/pic/user3.jpg') },
+            { username: "freddy323", image: require('./assets/pic/user4.png') },
+            { username: "a_virus", image: require('./assets/pic/user2.jpg') },
+          ].map((item, index) => (
+            <TouchableOpacity key={index} style={styles.storyItem} onPress={() => alert(`Opening story for ${item.username}`)}>
               <View style={styles.storyRing}>
-                <Image source={require('./assets/pic/icon_profile.webp')} style={styles.storyImage} />
+                <Image source={item.image} style={styles.storyImage} />
               </View>
-              <Text style={styles.storyText}>{item}</Text>
+              <Text style={styles.storyText}>{item.username}</Text>
             </TouchableOpacity>
           ))}
+
         </ScrollView>
 
         {/* Posts Feed */}
@@ -51,7 +58,7 @@ export default function App() {
           <View key={post} style={styles.post}>
             <View style={styles.postHeader}>
               <View style={styles.postHeaderLeft}>
-                <Image source={require('./assets/pic/icon_profile.webp')} style={styles.postProfilePic} />
+                <Image source={require('./assets/pic/user.jpg')} style={styles.postProfilePic} />
                 <View>
                   <Text style={styles.postUsername}>{post}</Text>
                   <Text style={styles.postLocation}>Calgary, AB</Text>
@@ -62,7 +69,7 @@ export default function App() {
               </TouchableOpacity>
             </View>
 
-            <Image source={require('./assets/pic/icon_profile.webp')} style={styles.postImage} />
+            <Image source={require('./assets/pic/hiking.jpg')} style={styles.postImage} />
 
             <View style={styles.postActions}>
               <View style={styles.postActionsLeft}>
